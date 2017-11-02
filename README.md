@@ -1,2 +1,2 @@
 # myworks
-some works additional for my resume
+some attachment to my resume
