@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>center</title>
+    <style>
+        *{margin: 0;padding: 0;}
+
+        .container{
+            background-color: #ccc;
+            width: 400px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /*margin:-100px 0px 0px -200px;*/
+            transform: translate(-50%, -50%);/*不固定宽高*/
+        }
+
+        .c1{
+            height: 50px;
+            width: 50px;
+            background-color: #fc0;
+            border-radius:0px 0px 50px 0px;
+        }
+
+        .c2{
+            height: 50px;
+            width: 50px;
+            background-color: #fc0;
+            position: absolute;
+            left: 350px;
+            top:150px;
+            border-radius:50px 0px 0px 0px;
+        }
+    </style>
+</head>
+<body>
+        <div class="container">
+            <div class="c1"></div>
+            <div class="c2"></div>
+        </div>
+</body>
+</html>

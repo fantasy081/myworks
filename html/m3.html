@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三栏式布局</title>
+    <style>
+    *{margin: 0;padding: 0}
+
+        body{
+            padding: 20px;
+        }
+
+        .container{
+            background-color: #eee;
+            border: 1px solid #999;
+            padding: 20px;
+            overflow: auto;/*浮动消除*/
+        }
+
+        .d1{
+            background-color: white;
+            border: 1px solid #999;
+            /*padding: 20px;*/
+            width: 200px;
+            float: left;
+        }
+
+        .d1>*{
+            float: left;
+        }
+
+        .d2{
+            background-color: white;
+            border: 1px solid #999;
+            margin: 0px 140px 0px 220px;
+        }
+
+        .d3{
+            background-color: white;
+            border: 1px solid #999;
+            /*padding: 20px;*/
+            width: 120px;
+            float: right;
+        }
+
+        .pic{
+            background-color: #eee;
+            width: 80px;
+            height: 80px;
+            margin: 20px;
+
+            display: -webkit-box;
+            -webkit-box-pack:center;
+            -webkit-box-align:center;
+            -webkit-box-orient: vertical;
+            text-align: center;
+        }
+
+        .mc{
+            float: left;
+            margin: 20px 0px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="d1">
+            <div class="pic">d1</div>
+            <div class="mc">团队名称</div>
+        </div>
+
+        <div class="d3">
+            <div class="pic">d3</div>
+            <div class="pic">d3</div>
+            <div class="pic">d3</div>
+            <div class="pic">d3</div>
+        </div>
+
+        <div class="d2">
+            <div class="pic">d2</div>
+            <div class="pic">d2</div>
+        </div>
+
+        <div class="d1">
+            <div class="pic">d1</div>
+            <div class="mc">团队名称</div>
+        </div>
+
+    </div>
+</body>
+</html>

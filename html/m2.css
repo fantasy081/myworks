@@ -1,0 +1,133 @@
+* {margin:0px;padding:0px;font-family: "Microsoft YaHei";}/*去除全部内外填充*/
+
+a{text-decoration : none}/*去除链接下划线*/
+
+.header{
+    background-color: #999;
+    padding: 5px 0px;
+}
+
+.logo{
+    margin-left: 20px;
+    height:42px;
+}
+
+.nav{
+    float: right;
+    margin-right: 20px;
+}
+
+.nav-menu{
+    display: inline;
+    height:42px;
+    line-height:42px;
+    padding: 10px;
+}
+
+.nav-menu>a{
+    font-family: "Microsoft YaHei";
+    color: white;
+}
+
+.nav-menu>a:hover{
+    color: blue;
+}
+
+.container{
+    background-color: #ddd;
+    padding: 20px;
+    overflow: auto;
+}
+
+.right{
+    /*border: 1px solid #999;*/
+    width: 340px;
+    float: right;
+}
+
+.left{
+    /*border: 1px solid #999;*/
+    margin: 0px 360px 0px 0px;
+}
+
+.content{
+    background-color: white;
+    margin: 0px 0px 20px 0px;
+    padding: 20px;
+}
+
+.content p{
+    text-indent: 2em;
+}
+
+.pic{
+    height: 200px;
+    margin: 5px;
+}
+
+.list,.olist{
+    margin-left: 40px;
+}
+
+.list>li{
+    list-style:none
+}
+
+h2,h3{
+    margin: 10px 0px;
+    color: #888;
+}
+
+h3{
+    font-size: 16px;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th{
+    background-color: #444;
+    color: #fff;
+}
+
+td{
+    border:1px solid #888;
+}
+
+.line{
+    overflow: auto;
+    margin: 5px 0px;
+    height: 25px;
+}
+
+.name{
+    width: 130px;
+    float: left;
+    text-align: right;
+}
+
+.biao{
+    margin-left: 140px;
+}
+
+.biao>span{
+    color: #aaa;
+    font-size: 13px;
+}
+
+.tijiao{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.tijiao>input{
+    width: 100%;
+    background-color: royalblue;
+    color: #FFF;
+    height: 40px;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    font-size: 16px;
+}
