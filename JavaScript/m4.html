@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS</title>
+    <script src="m4.js"></script>
+    <style>
+        #output{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+        }
+        #output>div{
+            color: #fff;
+            background-color: red;
+            text-align: center;
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <input type="text" id="input">
+    <button id="left-in">左侧入</button>
+    <button id="right-in">右侧入</button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button id="left-out">左侧出</button>
+    <button id="right-out">右侧出</button>
+</div>
+<div id="output">
+    <div>11</div>
+    <div>22</div>
+    <div>33</div>
+</div>
+</body>
+</html>
