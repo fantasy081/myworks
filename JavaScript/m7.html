@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Binary</title>
+    <style>
+        div{
+            border: 1px solid #000;
+            display: inline-block;
+            margin: 5px;
+        }
+        .l4{
+            width: 80px;
+            height: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+//        全局变量提前声明
+        var treeNodes=[];
+        var timer=null;
+
+        window.onload=function () {
+            var treeRoot=document.getElementsByClassName("root")[0];
+
+            document.getElementById("pre").onclick=function () {
+                reset();
+                preOrder(treeRoot);
+                changeColor();
+            }
+            document.getElementById("in").onclick=function () {
+                reset();
+                inOrder(treeRoot);
+                changeColor();
+            }
+            document.getElementById("post").onclick=function () {
+                reset();
+                postOrder(treeRoot);
+                changeColor();
+            }
+        }
+
+        function preOrder(node) {
+            if(!(node==null)){
+                treeNodes.push(node);
+                preOrder(node.firstElementChild);
+                preOrder(node.lastElementChild);
+            }
+        }
+
+        function inOrder(node) {
+            if(!(node==null)){
+                inOrder(node.firstElementChild);
+                treeNodes.push(node);
+                inOrder(node.lastElementChild);
+            }
+        }
+
+        function postOrder(node) {
+            if(!(node==null)){
+                postOrder(node.firstElementChild);
+                postOrder(node.lastElementChild);
+                treeNodes.push(node);
+            }
+        }
+
+        function reset() {
+            treeNodes=[];
+            clearInterval(timer);
+            var divs= document.getElementsByTagName("div");
+            for(var i=0;i<divs.length;i++){
+                divs[i].style.backgroundColor="white";
+            }
+        }
+
+        function changeColor() {
+            var i=0;
+            treeNodes[i].style.backgroundColor="red";
+            timer=setInterval(function(){
+                i++;
+                if(i<treeNodes.length){
+                    treeNodes[i-1].style.backgroundColor="white";
+                    treeNodes[i].style.backgroundColor="red";
+                }else{
+                    clearInterval(timer);
+                    treeNodes[i-1].style.backgroundColor="white";
+                }
+            },700)
+        }
+    </script>
+</head>
+<body>
+<div class="root">
+    <div class="l1">
+        <div class="l2">
+            <div class="l3">
+                <div class="l4"></div>
+                <div class="l4"></div>
+            </div>
+            <div class="l3">
+                <div class="l4"></div>
+                <div class="l4"></div>
+            </div>
+        </div>
+        <div class="l2">
+            <div class="l3">
+                <div class="l4"></div>
+                <div class="l4"></div>
+            </div>
+            <div class="l3">
+                <div class="l4"></div>
+                <div class="l4"></div>
+            </div>
+        </div>
+    </div>
+    <div class="l1">
+        <div class="l2">
+            <div class="l3">
+                <div class="l4"></div>
+                <div class="l4"></div>
+            </div>
+            <div class="l3">
+                <div class="l4"></div>
+                <div class="l4"></div>
+            </div>
+        </div>
+        <div class="l2">
+            <div class="l3">
+                <div class="l4"></div>
+                <div class="l4"></div>
+            </div>
+            <div class="l3">
+                <div class="l4"></div>
+                <div class="l4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="pre">前序</button>
+<button id="in">中序</button>
+<button id="post">后序</button>
+</body>
+</html>
