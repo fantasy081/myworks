@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sweet Alert</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        body{
+            background-color: green;
+        }
+        #altcon{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top:0;
+            left: 0;
+            background-color: rgba(255,255,255,0.5);
+            display: none;
+        }
+        #altbox{
+            width: 400px;
+            height: 240px;;
+            border: 1px solid #000;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFF;
+            opacity: 1;
+        }
+        #altbox>div{
+            width: 390px;
+            line-height: 40px;
+            padding-left: 10px;
+            background-color: dodgerblue;
+            color: #FFF;
+        }
+        #altbox>p{
+            padding: 10px;
+        }
+        #altbox>button:nth-of-type(1){
+            width: 60px;
+            height: 30px;
+            position: absolute;
+            bottom: 10px;
+            right: 80px;
+        }
+        #altbox>button:nth-of-type(2){
+            width: 60px;
+            height: 30px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload=function () {
+
+            document.getElementById('alt').onclick=function () {
+                alert_pro("在此输入正文在此输入正文在此输入正文在此输入正文");
+            }
+            document.getElementById('ok').onclick=function () {
+                document.getElementById('altcon').style.display='none';
+            }
+            document.getElementById('cancel').onclick=function () {
+                document.getElementById('altcon').style.display='none';
+            }
+            document.getElementById('altcon').onclick=function () {
+                document.getElementById('altcon').style.display='none';
+            }
+        }
+        
+        function alert_pro(msg) {
+            var alt=document.getElementById('altbox');
+            alt.children[1].innerHTML=msg;
+            alt.parentNode.style.display='block';
+        }
+    </script>
+</head>
+<body>
+<div>
+    <button id="alt">弹出提示</button>
+</div>
+<div id="altcon">
+    <div id="altbox">
+    <div>标题</div>
+    <p>正文</p>
+    <button id="ok">确定</button>
+    <button id="cancel">取消</button>
+</div>
+</div>
+</body>
+</html>

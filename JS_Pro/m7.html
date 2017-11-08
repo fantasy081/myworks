@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格排序</title>
+    <style>
+        *{margin: 0; padding:0;}
+        table{
+            border-collapse: collapse;
+        }
+        th,td{
+            width: 80px;
+            line-height: 30px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #000;
+        }
+        th{
+            background-color: #888;
+            color: #FFF;
+            position: relative;
+            cursor: pointer;
+        }
+        th:after {
+            content: "";
+            position: absolute;
+            top: 9px;
+            right: 5px;
+            /*用三个边框拼出三角形*/
+            border-bottom: 5px solid #fff;
+            border-right: 5px solid transparent;
+            border-left: 5px solid transparent;
+        }
+        th:before {
+            content: "";
+            position: absolute;
+            top: 18px;
+            right: 5px;
+            border-top: 5px solid #fff;
+            border-right: 5px solid transparent;
+            border-left: 5px solid transparent;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+
+            var table=document.getElementById("tb");
+            var table_th=document.getElementsByTagName("th");
+            var table_tbody=table.getElementsByTagName("tbody")[0];
+            var table_tr=table_tbody.getElementsByTagName("tr");
+            var flag=true;
+
+            function bind_click(_i) {
+                /*点击谁谁进行排序  只针对一列*/
+                table_th[_i].onclick = function () {
+                    var temp_arr = [];
+                    var temp_tr_arr = [];
+                    /*在全部的行 tr进行循环*/
+                    for (j = 0; j < table_tr.length; j++) {
+                        /*将特征值存储在临时变量中*/
+                        temp_arr.push(table_tr[j].getElementsByTagName("td")[_i].innerHTML);
+                        /*复制全部TR*/
+                        temp_tr_arr.push(table_tr[j].cloneNode(true));
+                    }
+//                console.log(temp_arr);
+//                console.log(temp_tr_arr);
+                    var tr_length=table_tr.length;
+                    /*清除原有的tr*/
+                    for(x=0;x<tr_length;x++){
+                        table_tbody.removeChild(table_tbody.getElementsByTagName("tr")[0]);
+                    }
+
+                    /*取得第一个特征值，js中使用双竖线运算符"||"，返回第一个有效值*/
+                    var temp=parseInt(temp_arr[0])||temp_arr[0];
+
+                    /*对特征值数组进行排序*/
+                    if(typeof(temp)=='number'){
+                        if(flag){ /*sort 排序算法  由小到大*/
+                            temp_arr.sort(function(a,b){return a-b;});
+                        }else{ /*sort 排序算法  由大到小*/
+                            temp_arr.sort(function(a,b){return b-a;});
+                        }
+                    }else{
+                        /*姓名按字母顺序排序*/
+                        temp_arr.sort();
+                    }
+                    flag=!flag;
+
+                    /*按照已经排好的temp_arr，匹配temp_tr_arr中的特征值，对temp_tr_arr进行排序，插入表格*/
+                    for(k=0;k<temp_arr.length;k++){
+                        for(vv=0;vv<temp_tr_arr.length;vv++){
+                            if(temp_arr[k]==temp_tr_arr[vv].getElementsByTagName("td")[_i].innerHTML){
+                                table_tbody.appendChild(temp_tr_arr[vv]);
+                            }
+                        }
+                    }
+                }
+            }
+
+            for(i=0;i<table_th.length;i++){
+                bind_click(i);
+            };
+
+        }
+    </script>
+</head>
+<body>
+<div>
+    <table id="tb">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th id="wen">语文</th>
+                <th>数学</th>
+                <th>英语</th>
+                <th>总分</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>小明</td>
+                <td>70</td>
+                <td>80</td>
+                <td>90</td>
+                <td>240</td>
+            </tr>
+            <tr>
+                <td>小红</td>
+                <td>90</td>
+                <td>60</td>
+                <td>80</td>
+                <td>230</td>
+            </tr>
+            <tr>
+                <td>小王</td>
+                <td>60</td>
+                <td>90</td>
+                <td>70</td>
+                <td>220</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
