@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单验证</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .con{
+            width: 300px;
+            margin: 0 auto;
+            border: 1px solid blue;
+        }
+        .con p label:first-of-type{
+            display: inline-block;
+            width: 80px;
+            text-align: right;
+            line-height: 25px;
+            vertical-align: middle;
+        }
+        .con input{
+            margin-left: 10px;
+            margin-top: 5px;
+            line-height: 23px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+        }
+        .con input:focus{
+            border-color: dodgerblue;
+        }
+        .con button{
+            width: 100px;
+            height: 30px;
+            background-color: dodgerblue;
+            color: white;
+        }
+        .tip{
+            display: none;
+            margin-left: 95px;
+            font-size: 13px;
+            color: #888;
+        }
+        #btn{
+            margin-left: 95px;
+            margin-top: 10px;
+            background-color: dodgerblue;
+            color: white;
+            width: 100px;
+            height: 30px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var inputs=document.getElementsByTagName('input');
+
+            for(var i=0;i<inputs.length;i++){
+                (function (i) {
+//                为什么for循环内必须用立即执行函数，否则无效?
+//                function 的参数是值传递而不是引用传递
+//                通过立即执行函数设置获得焦点显示提示
+                    inputs[i].onfocus=function () {
+                        inputs[i].nextElementSibling.style.display='block';
+                    }
+                })(i)
+            }
+
+            document.getElementById('name').onblur=function () {
+                if(this.value.length>=4 && this.value.length<=16) {
+                    this.nextElementSibling.innerHTML="验证通过";
+                    this.nextElementSibling.style.color='green';
+                    this.style.borderColor='green';
+                } else {
+                    this.nextElementSibling.innerHTML="必填，长度为4~16个字符";
+                    this.nextElementSibling.style.color='red';
+                    this.style.borderColor='red';
+                }
+//                如何区分汉字为2个长度?
+            }
+            
+            document.getElementById('password').onblur=function () {
+                if(this.value.length>=6 && this.value.length<=16) {
+                    this.nextElementSibling.innerHTML="密码可用";
+                    this.nextElementSibling.style.color='green';
+                    this.style.borderColor='green';
+                } else {
+                    this.nextElementSibling.innerHTML="数字或字母，长度为6~16个字符";
+                    this.nextElementSibling.style.color='red';
+                    this.style.borderColor='red';
+                }
+            }
+
+            document.getElementById('repassword').onblur=function () {
+                if(this.value==document.getElementById('password').value) {
+                    this.nextElementSibling.innerHTML="密码一致";
+                    this.nextElementSibling.style.color='green';
+                    this.style.borderColor='green';
+                } else {
+                    this.nextElementSibling.innerHTML="密码输入不一致";
+                    this.nextElementSibling.style.color='red';
+                    this.style.borderColor='red';
+                }
+            }
+
+            document.getElementById('email').onblur=function () {
+                if(this.value.length>=4 && this.value.length<=16) {
+                    this.nextElementSibling.innerHTML="验证通过";
+                    this.nextElementSibling.style.color='green';
+                    this.style.borderColor='green';
+                } else {
+                    this.nextElementSibling.innerHTML="请输入正确的邮箱地址";
+                    this.nextElementSibling.style.color='red';
+                    this.style.borderColor='red';
+                }
+            }
+
+            document.getElementById('tel').onblur=function () {
+                if(this.value.length==11) {
+                    this.nextElementSibling.innerHTML="验证通过";
+                    this.nextElementSibling.style.color='green';
+                    this.style.borderColor='green';
+                } else {
+                    this.nextElementSibling.innerHTML="手机号应为11位数字";
+                    this.nextElementSibling.style.color='red';
+                    this.style.borderColor='red';
+                }
+            }
+
+            document.getElementById('btn').onclick=function () {
+                var sum=0;
+                for(var i=0;i<inputs.length;i++){
+                    (function (i) {
+                        if(inputs[i].nextElementSibling.style.color=='green'){
+                            sum=sum+1;
+                        }
+                    })(i)
+                }
+                if(sum==5){
+                    alert("验证通过")
+                } else {
+                    alert("验证失败")
+                }
+                return false;/*阻止表单自动提交*/
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="con">
+    <form>
+        <p>
+            <label>名称</label>
+            <input type="text" id="name">
+            <label class="tip">必填，长度为4~16个字符</label>
+        </p>
+        <p>
+            <label>密码</label>
+            <input type="password" id="password">
+            <label class="tip">数字或字母，长度为6~16个字符</label>
+        </p>
+        <p>
+            <label>确认密码</label>
+            <input type="password" id="repassword">
+            <label class="tip">请再次输入密码</label>
+        </p>
+        <p>
+            <label>邮箱</label>
+            <input type="email" id="email">
+            <label class="tip">请输入邮箱地址</label>
+        </p>
+        <p>
+            <label>手机</label>
+            <input type="tel" id="tel">
+            <label class="tip">请输入手机号码</label>
+        </p>
+        <p>
+            <button id="btn">提交</button>
+        </p>
+    </form>
+</div>
+</body>
+</html>

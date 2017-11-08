@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>棋盘</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        table{
+            border-collapse: collapse;
+            position: relative;
+        }
+        th,td{
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-weight: bold;
+        }
+        td{
+            border: 1px solid #000;
+        }
+        tr>td:first-of-type{
+            border: none;
+        }
+        #vip{
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            position: absolute;
+            overflow: hidden;
+            transition: all 1s;
+        }
+        #dir{
+            width: 100%;
+            height: 100%;
+            background-color: dodgerblue;
+            position: absolute;
+            transition: all 1s;
+        }
+        p,ul{
+            margin: 10px 40px;
+            list-style: none;
+            width: 420px;
+        }
+    </style>
+    <script type="text/javascript" src="m4.js"></script>
+    <script>
+        window.onload=function () {
+//            创建表格
+            var rows=10;
+            var cols=10;
+            createtable(cols,rows);
+
+//            设置初始定位
+            var pos=new Array()
+            pos['col']=4;
+            pos['row']=6;
+            setpos(pos);
+
+//            设置初始方向
+//            0：上，1：右，2：下，3：左:
+            var dir=0;
+            setdir(dir);
+
+            document.getElementById('btn').onclick=function () {
+                pos,dir=move(pos,dir,cols,rows);
+            };
+        }
+    </script>
+</head>
+<body>
+<div id="con">
+    <table id="ta"><div id="vip"><div id="dir"></div></div></table>
+    <p>
+        <input type="text" id="sel" list="ops" placeholder="输入指令">
+        <datalist id="ops">
+            <option>GO</option>
+            <option>TUN LEF</option>
+            <option>TUN RIG</option>
+            <option>TUN BAC</option>
+            <option>TRA LEF</option>
+            <option>TRA TOP</option>
+            <option>TRA RIG</option>
+            <option>TRA BOT</option>
+            <option>MOV LEF</option>
+            <option>MOV TOP</option>
+            <option>MOV RIG</option>
+            <option>MOV BOT</option>
+        </datalist>
+        <button id="btn">执行</button>
+    </p>
+    <p>实现一个类似棋盘的格子空间，每个格子用两个数字可以定位，一个红正方形的DOM在这个空间内，正方形中的蓝色边表示这是他的正面，有一个input输入框
+        在输入框中允许输入如下指令，按下按钮后，使得正方形做相应动作</p>
+    <ul>
+        <li>GO：向蓝色边所面向的方向前进一格</li>
+        <li>TUN LEF：向左转（逆时针旋转90度）</li>
+        <li>TUN RIG：向右转（顺时针旋转90度）</li>
+        <li>TUN BAC：向右转（旋转180度）</li>
+        <li>TRA LEF：向屏幕的左侧移动一格，方向不变</li>
+        <li>TRA TOP：向屏幕的上面移动一格，方向不变</li>
+        <li>TRA RIG：向屏幕的右侧移动一格，方向不变</li>
+        <li>TRA BOT：向屏幕的下面移动一格，方向不变</li>
+        <li>MOV LEF：方向转向屏幕左侧，并向屏幕的左侧移动一格</li>
+        <li>MOV TOP：方向转向屏幕上面，向屏幕的上面移动一格</li>
+        <li>MOV RIG：方向转向屏幕右侧，向屏幕的右侧移动一格</li>
+        <li>MOV BOT：方向转向屏幕下面，向屏幕的下面移动一格</li>
+
+    </ul>
+</div>
+</body>
+</html>
